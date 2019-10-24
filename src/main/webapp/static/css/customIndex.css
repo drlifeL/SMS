@@ -1,0 +1,19 @@
+
+
+/*
+基本信息表表头
+ * */
+.table-responsive{
+	margin-top: 10px;
+    border-top: 1px solid black;
+}
+.pagination{
+	display:flex;
+	justify-content: center;
+}
+.pagination>div{
+	line-height: 34px;
+}
+.detailUl{
+	list-style: none;
+}
