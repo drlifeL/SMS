@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dxxy.dao.StudentDao">
+    <resultMap id="findStu" type="cn.dxxy.entity.Student" autoMapping="true">
+        <result column="c_departments" property="faculty.cDepartments"/>
+        <result column="c_name" property="faculty.cName"/>
+    </resultMap>
+    <select id="findAllStu" resultMap="findStu">
+    select s.s_id,s_name,s_sex,s_place,s_age,f.c_departments,c_name from
+    stu_info s join faculty f
+    on s.c_id = f.c_id
+    </select>
+</mapper>
