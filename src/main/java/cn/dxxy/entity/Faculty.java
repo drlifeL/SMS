@@ -14,8 +14,6 @@ public class Faculty {
     private String cDepartments;
     // 班级班级人数
     private Integer cNum;
-    //学院下的学生
-    //List<Student> listStu;
 
     public String getcId() {
         return cId;
@@ -48,14 +46,6 @@ public class Faculty {
     public void setcNum(Integer cNum) {
         this.cNum = cNum;
     }
-
-//    public List<Student> getListStu() {
-//        return listStu;
-//    }
-//
-//    public void setListStu(List<Student> listStu) {
-//        this.listStu = listStu;
-//    }
 
     @Override
     public String toString() {

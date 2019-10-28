@@ -15,8 +15,8 @@
     <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
 
     <!-- Custom styles for this template -->
-    <link  rel="stylesheet" th:href="@{/static/css/dashboard.css}">
-    <link  rel="stylesheet" th:href="@{/static/css/customIndex.css}">
+    <link rel="stylesheet" th:href="@{/static/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/static/css/customIndex.css}">
 </head>
 <body>
 
@@ -34,8 +34,8 @@
                         <th>姓名</th>
                         <th>性别</th>
                         <th>年龄</th>
-                        <th>院系</th>
                         <th>班级</th>
+                        <th>院系</th>
                         <th>籍贯</th>
                         <th>操作</th>
                     </tr>
@@ -46,8 +46,8 @@
                         <td th:text="${stu.sName}">张三</td>
                         <td th:text="${stu.sSex}">男</td>
                         <td th:text="${stu.sAge}">18</td>
-                        <td th:text="${stu.faculty.cDepartments}">大数据与数字媒体</td>
                         <td th:text="${stu.faculty.cName}">网站建设3班</td>
+                        <td th:text="${stu.faculty.cDepartments}">大数据与数字媒体</td>
                         <td th:text="${stu.sPlace}">重庆</td>
                         <td>
                             <a class="btn btn-default" role="button" th:href="@{/toUpdatePage}">修改</a>

@@ -7,9 +7,28 @@
         <result column="c_departments" property="faculty.cDepartments"/>
         <result column="c_name" property="faculty.cName"/>
     </resultMap>
+    <!-- 查询所有学生 -->
     <select id="findAllStu" resultMap="findStu">
     select s.s_id,s_name,s_sex,s_place,s_age,f.c_departments,c_name from
     stu_info s join faculty f
     on s.c_id = f.c_id
+    </select>
+
+    <!-- 查询所有的学院 -->
+    <select id="findAllFaculty" resultType="string">
+       SELECT distinct c_departments FROM `faculty`
+    </select>
+
+
+    <resultMap id="detailClass" type="cn.dxxy.entity.Faculty" autoMapping="true">
+        <id column="c_id" property="cId"/>
+        <result column="c_name" property="cName"/>
+        <result column="c_departments" property="cDepartments"/>
+        <result column="c_num" property="cNum"/>
+    </resultMap>
+    <!-- 给定一个学院，查询该学院下的所有班级 -->
+    <!-- 存在数据库编码问题 -->
+    <select id="getDeptDetail" resultType="cn.dxxy.entity.Faculty">
+        select c_id,c_name from faculty where c_departments = #{deptName}
     </select>
 </mapper>
