@@ -19,7 +19,16 @@ public class Student {
     private Faculty faculty;
     //学生年龄字段
     private Integer sAge;
+    //学生邮箱字段
+    private String sEmail;
 
+    public String getsEmail() {
+        return sEmail;
+    }
+
+    public void setsEmail(String sEmail) {
+        this.sEmail = sEmail;
+    }
 
     public Integer getsAge() {
         return sAge;
@@ -95,6 +104,8 @@ public class Student {
                 ", sPlace='" + sPlace + '\'' +
                 ", sPassword='" + sPassword + '\'' +
                 ", faculty=" + faculty +
+                ", sAge=" + sAge +
+                ", sEmail='" + sEmail + '\'' +
                 '}';
     }
 }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>学生管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/static/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/static/css/customIndex.css}">
+</head>
+<body>
+
+<div th:replace="template::topBar"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="template::sideBar"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <form class="form-horizontal" method="post" th:action="@{/updateStu}">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">学号</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="sId" th:value="${stuInfo.sId}" readonly/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="sName" th:value="${stuInfo.sName}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">性别</label>
+                    <div class="col-sm-2">
+                        <label class="radio-inline">
+                            <input type="radio" name="sSex" value="男" th:checked="${stuInfo.sSex=='男'}"> 男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sSex" value="女" th:checked="${stuInfo.sSex=='女'}"> 女
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">年龄</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="sAge" th:value="${stuInfo.sAge}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">院系</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" name="faculty.cDepartments" id="department">
+                            <option value="None" th:attr="page='edit'">--请选择--</option>
+                            <option th:each="depart:${departs}" th:value="${depart}" th:selected="${depart==stuInfo.faculty.cDepartments}">[[${depart}]]</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">班级</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="deptDetail" name="cId">
+                            <option>--请选择--</option>
+                            <option  th:each="detail:${fDetail}" th:value="${detail.cId}" th:selected="${detail.cName==stuInfo.faculty.cName}">[[${detail.cName}]]</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">籍贯</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="sPlace" th:value="${stuInfo.sPlace}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">邮箱</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="sEmail" th:value="${stuInfo.sEmail}"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">修改</button>
+                        <button type="button" class="btn btn-default">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<script src="js/coustomJs.js" th:src="@{/static/js/coustomJs.js}"></script>
+</body>
+</html>

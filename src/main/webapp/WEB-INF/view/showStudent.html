@@ -25,7 +25,6 @@
     <div class="row">
         <div th:replace="template::sideBar"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <a class="btn btn-primary" href="#" role="button">新增</a>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
@@ -36,6 +35,7 @@
                         <th>年龄</th>
                         <th>班级</th>
                         <th>院系</th>
+                        <th>邮箱</th>
                         <th>籍贯</th>
                         <th>操作</th>
                     </tr>
@@ -48,10 +48,11 @@
                         <td th:text="${stu.sAge}">18</td>
                         <td th:text="${stu.faculty.cName}">网站建设3班</td>
                         <td th:text="${stu.faculty.cDepartments}">大数据与数字媒体</td>
+                        <td th:text="${stu.sEmail}">xx@qq.com</td>
                         <td th:text="${stu.sPlace}">重庆</td>
                         <td>
-                            <a class="btn btn-default" role="button" th:href="@{/toUpdatePage}">修改</a>
-                            <a class="btn btn-default" href="#" role="button">删除</a>
+                            <a class="btn btn-default" role="button" th:href="@{/toEditPage(sId=${stu.sId})}">修改</a>
+                            <a class="btn btn-default" role="button" th:href="@{/delStu(sId=${stu.sId})}" id = "delBtn">删除</a>
                         </td>
                     </tr>
                     </tbody>

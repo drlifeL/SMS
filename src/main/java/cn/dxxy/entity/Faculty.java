@@ -12,8 +12,7 @@ public class Faculty {
     private String cName;
     // 所属学院
     private String cDepartments;
-    // 班级班级人数
-    private Integer cNum;
+
 
     public String getcId() {
         return cId;
@@ -39,21 +38,12 @@ public class Faculty {
         this.cDepartments = cDepartments;
     }
 
-    public Integer getcNum() {
-        return cNum;
-    }
-
-    public void setcNum(Integer cNum) {
-        this.cNum = cNum;
-    }
-
     @Override
     public String toString() {
         return "Faculty{" +
                 "cId='" + cId + '\'' +
                 ", cName='" + cName + '\'' +
                 ", cDepartments='" + cDepartments + '\'' +
-                ", cNum=" + cNum +
                 '}';
     }
 }

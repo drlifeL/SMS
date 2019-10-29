@@ -65,22 +65,21 @@
                         </select>
                     </div>
                     <div class="col-sm-2 distanceR">
-                        <select class="form-control" id = "deptDetail" name="faculty.cid">
+                        <select class="form-control" id = "deptDetail" name="cId">
                             <option>--请选择--</option>
-                            <option>哈哈哈</option>
                         </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">籍贯</label>
-                    <label class="col-sm-3 control-label">年级</label>
+                    <label class="col-sm-3 control-label">邮箱</label>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-2 distanceL">
                         <input type="text" class="form-control" name="sPlace"/>
                     </div>
                     <div class="col-sm-2 distanceR">
-                        <input type="text" class="form-control" />
+                        <input type="email" class="form-control" name = "sEmail"/>
                     </div>
                 </div>
 
@@ -101,6 +100,6 @@
     </div>
 </div>
 <script src="js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
-<script src="js/coustomJs.js" th:src="@{/static/js/coustomJs.js}" th:inline="javascript"></script>
+<script src="js/coustomJs.js" th:src="@{/static/js/coustomJs.js}" ></script>
 </body>
 </html>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @Service
 public class StudentService {
 
@@ -33,5 +34,41 @@ public class StudentService {
 
     public List<Faculty> getDeptDetail(String deptName) {
         return studentDao.getDeptDetail(deptName);
+    }
+
+    /**
+     * 添加学生并级联更新学生人数
+     * <p>
+     * 注意：此处应该有事务功能
+     *
+     * @param student
+     */
+    public void addStudent(Student student) {
+        studentDao.addStudent(student);
+    }
+
+    /**
+     * 根据学生的id查询学生
+     *
+     * @param sId
+     * @return
+     */
+
+    public Student findStudentById(String sId) {
+        return studentDao.findStudentById(sId);
+    }
+
+    /**
+     * 删除学生
+     *
+     * @param sId
+     */
+    public void delStudent(String sId) {
+        studentDao.delStudent(sId);
+    }
+
+    public void updateStu(Student student) {
+        studentDao.updateStu(student);
+
     }
 }

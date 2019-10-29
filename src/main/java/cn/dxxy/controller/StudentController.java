@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -54,6 +55,7 @@ public class StudentController {
      */
     @RequestMapping("/addStudent")
     public String addStudent(Student student) {
+        studentService.addStudent(student);
         return "forward:showStuInfo";
     }
 
@@ -70,5 +72,60 @@ public class StudentController {
         return studentService.getDeptDetail(deptName);
     }
 
+    /**
+     * 去更改页面
+     *
+     * @return
+     */
+    @RequestMapping("/toEditPage")
+    public String toEditPage(String sId, Model model) {
+        //拿到当前学生的所有信息
+        Student student = studentService.findStudentById(sId);
+        //拿到所有的学院信息
+        List<String> departs = studentService.findAllFaculty();
+        //拿到当前学生所属学院的班级信息
+        List<Faculty> fDetail = studentService.getDeptDetail(student.getFaculty().getcDepartments());
+        model.addAttribute("stuInfo", student);
+        model.addAttribute("departs", departs);
+        model.addAttribute("fDetail", fDetail);
+        return "editStuPage";
+    }
+
+    /**
+     * 删除学生功能
+     *
+     * @param delId
+     * @return
+     */
+    @RequestMapping("/delStu")
+    public String delStu(@RequestParam("sId") String delId) {
+        Student student = studentService.findStudentById(delId);
+        if(student!=null)
+            studentService.delStudent(student.getsId());
+        return "forward:showStuInfo";
+    }
+
+    /**
+     * 修改学生信息
+     *
+     * @param student
+     * @return
+     */
+    @RequestMapping("/updateStu")
+    public String updateStu(Student student) {
+        studentService.updateStu(student);
+        return "forward:showStuInfo";
+    }
+
+    /**
+     * 将所有的数据换成Json后返回
+     *
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getEditStuData")
+    public List<String> getEditStuData() {
+        return studentService.findAllFaculty();
+    }
 
 }

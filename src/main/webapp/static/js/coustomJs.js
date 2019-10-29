@@ -7,6 +7,7 @@ $().ready(function () {
         var $target = $(this).next("ul");
         $target.hasClass("hidden") ? $target.removeClass("hidden").addClass("show") : $target.removeClass("show").addClass("hidden");
     });
+    //添加学生界面中异步获取学院信息。
     $("#department").change(function () {
         //获取到当前选择的是哪个学院
         var deptName = $("#department").prop("value");
@@ -26,6 +27,11 @@ $().ready(function () {
                 }
             });
         }
-    })
-
+    });
+    //删除学生 ,使用事件对象阻止a标签的默认行为.
+    $("#delBtn").click(function (event) {
+        if (!confirm("确认要删除这条记录吗?")) {
+            window.event.returnValue = false;
+        }
+    });
 });
