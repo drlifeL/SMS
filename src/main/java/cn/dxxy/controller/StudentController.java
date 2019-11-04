@@ -28,7 +28,7 @@ public class StudentController {
     public String showStuInfo(Model model) {
         List<Student> allStu = studentService.findAllStu();
         model.addAttribute("allStu", allStu);
-        return "showStudent";
+        return "student/showStudent";
     }
 
     /**
@@ -41,7 +41,7 @@ public class StudentController {
     public String toAddStu(Model model) {
         List<String> listFacultyName = studentService.findAllFaculty();
         model.addAttribute("facultys", listFacultyName);
-        return "addStudent";
+        return "student/addStudent";
     }
 
     /**
@@ -88,7 +88,7 @@ public class StudentController {
         model.addAttribute("stuInfo", student);
         model.addAttribute("departs", departs);
         model.addAttribute("fDetail", fDetail);
-        return "editStuPage";
+        return "student/editStuPage";
     }
 
     /**
@@ -117,15 +117,5 @@ public class StudentController {
         return "forward:showStuInfo";
     }
 
-    /**
-     * 将所有的数据换成Json后返回
-     *
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/getEditStuData")
-    public List<String> getEditStuData() {
-        return studentService.findAllFaculty();
-    }
 
 }

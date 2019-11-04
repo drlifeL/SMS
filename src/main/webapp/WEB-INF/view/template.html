@@ -26,11 +26,11 @@
 </nav>
     <div class="col-sm-3 col-md-2 sidebar" th:fragment="sideBar">
     <ul class="nav nav-sidebar">
-        <li class="active">
+        <li th:class="${ck}=='stu'?'active':''">
             <a href="#" class ="xlMenu">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 学生管理
+                <span  aria-hidden="true" th:class="${ck}=='stu'?'glyphicon glyphicon-minus-sign':'glyphicon glyphicon-plus-sign'"></span> 学生管理
             </a>
-            <ul class ="detailUl hidden">
+            <ul th:class="${ck}=='stu'?'show detailUl':'hidden detailUl'">
                 <li>
                     <a th:href="@{/toAddStuPage}">添加学生</a>
                 </li>
@@ -39,16 +39,16 @@
                 </li>
             </ul>
         </li>
-        <li>
+        <li th:class="${ck}=='sc'?'active':''">
             <a href="#" class ="xlMenu">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 成绩管理
+                <span  aria-hidden="true" th:class="${ck}=='sc'?'glyphicon glyphicon-minus-sign':'glyphicon glyphicon-plus-sign'"></span> 成绩管理
             </a>
-            <ul class ="detailUl hidden">
+            <ul  th:class="${ck}=='sc'?'show detailUl':'hidden detailUl'">
                 <li>
-                    <a href="#">成绩录入</a>
+                    <a th:href="@{/toAddScore}">成绩录入</a>
                 </li>
                 <li>
-                    <a href="#">成绩列表</a>
+                    <a th:href="@{/showStuScore}">成绩列表</a>
                 </li>
             </ul>
         </li>
