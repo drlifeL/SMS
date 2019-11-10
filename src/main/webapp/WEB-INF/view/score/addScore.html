@@ -28,52 +28,38 @@
         <div th:replace="template::sideBar(ck='sc')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <span>当前位置->成绩录入</span>
-            <div>
-                院系：
-                <select>
-                    <option>--请选择--</option>
-                </select>
-                专业：
-                <select>
-                    <option>--请选择--</option>
-                </select>
-                班级：
-                <select>
-                    <option>--请选择--</option>
-                </select>
-                学年：
-                <select>
-                    <option>--请选择--</option>
-                    <option>2017-2018上</option>
-                </select>
-                <button class="btn btn-default">查询</button>
-            </div>
-            <table class="table table-bordered">
-                <thead>
-                <th>学号</th>
-                <th>姓名</th>
-                <th>班级</th>
-                <th>操作</th>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>171001</td>
-                    <td>张三</td>
-                    <td>网站建设</td>
-                    <td>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal">录入</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>171002</td>
-                    <td>李四</td>
-                    <td>网站建设</td>
-                    <td>
-                        <button class="btn btn-primary">录入</button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <p class="information">注意学号,注意学号,注意学号！！！重要的事情说三遍！</p>
+            <form method="post" action="/addScore">
+                <table class="table table-bordered">
+                    <thead>
+                    <th>学号</th>
+                    <th>学年</th>
+                    <th>课程</th>
+                    <th>分数</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><input class="form-control" name="sId"/></td>
+                        <td><input class="form-control" name="sYear"/></td>
+                        <td>
+                            <select class="form-control" name="couId">
+                                <option>--请选择--</option>
+                                <option th:each="course:${courseList}" th:value="${course.couId}">
+                                    [[${course.couName}]]
+                                </option>
+                            </select>
+                        </td>
+                        <td><input class="form-control" name="grade"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="operations-panel">
+                    <button class="btn btn-orange">重置</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
@@ -83,20 +69,21 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">成绩录入</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal">
                     <div class="form-group">
-                        <label  class="col-sm-2 control-label">学号</label>
+                        <label class="col-sm-2 control-label">学号</label>
                         <div class="col-sm-5">
                             <p class="form-control-static">171001</p>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label  class="col-sm-2 control-label">姓名</label>
+                        <label class="col-sm-2 control-label">姓名</label>
                         <div class="col-sm-5">
                             <p class="form-control-static">张三</p>
                         </div>
@@ -111,19 +98,19 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">java</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Python</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">数据库</label>
                         <div class="col-sm-5">
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control">
                         </div>
                     </div>
                 </form>

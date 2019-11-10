@@ -8,8 +8,6 @@ public class Course {
     private String couId;
     //课程名
     private String couName;
-    //教师ID
-    private String tId;
 
     public String getCouId() {
         return couId;
@@ -27,20 +25,11 @@ public class Course {
         this.couName = couName;
     }
 
-    public String gettId() {
-        return tId;
-    }
-
-    public void settId(String tId) {
-        this.tId = tId;
-    }
-
     @Override
     public String toString() {
         return "Course{" +
                 "couId='" + couId + '\'' +
                 ", couName='" + couName + '\'' +
-                ", tId='" + tId + '\'' +
                 '}';
     }
 }

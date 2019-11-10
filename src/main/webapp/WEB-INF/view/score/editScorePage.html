@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>学生管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" th:href="@{/static/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/static/css/customIndex.css}">
+</head>
+<body>
+
+<div th:replace="template::topBar"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="template::sideBar (ck='sc')"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <form class="form-horizontal" method="post" th:action="@{/updateScore}">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">学号</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="sId" th:value="${score['sId']}" readonly/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="sName" th:value="${score['sName']}" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">班级</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="cName" th:value="${score['cName']}" readonly/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">学年</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="sYear" th:value="${score['sYear']}" readonly/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">课程</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="couName" th:value="${score['couName']}" readonly/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">分数</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control" name="grade" th:value="${score['grade']}"/>
+                    </div>
+                </div>
+                <input type="hidden" name="scId" th:value="${score['scId']}">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">修改</button>
+                        <button type="button" class="btn btn-default">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<script src="js/coustomJs.js" th:src="@{/static/js/coustomJs.js}"></script>
+</body>
+</html>

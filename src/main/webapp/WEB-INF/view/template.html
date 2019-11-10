@@ -52,21 +52,21 @@
                 </li>
             </ul>
         </li>
-        <li>
+        <li th:class="${ck}=='xy'?'active':''">
             <a href="#" class ="xlMenu">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 选课模块
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 学院管理
             </a>
-            <ul class ="detailUl hidden">
+            <ul th:class="${ck}=='xy'?'show detailUl':'hidden detailUl'">
                 <li>
-                    <a href="#">我的选课</a>
+                    <a href="#">学院列表</a>
                 </li>
             </ul>
         </li>
-        <li>
+        <li th:class="${ck}=='user'?'active':''">
             <a href="#" class ="xlMenu">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 用户管理
             </a>
-            <ul class ="detailUl hidden">
+            <ul th:class="${ck}=='user'?'show detailUl':'hidden detailUl'">
                 <li>
                     <a href="#">密码修改</a>
                 </li>

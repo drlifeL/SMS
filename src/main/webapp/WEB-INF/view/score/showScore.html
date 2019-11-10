@@ -30,8 +30,10 @@
 
             <span>当前位置->成绩列表</span>
             <div class="col-md-4 col-md-offset-10">
-                <input/>
-                <button>查询</button>
+                <form action="findScore">
+                    <input name="sInfo" placeholder="请输入学号或者班级查询"/>
+                    <button type="submit">查询</button>
+                </form>
             </div>
 
             <table class="table table-bordered">
@@ -40,8 +42,10 @@
                     <th>学号</th>
                     <th>姓名</th>
                     <th>班级</th>
+                    <th>学年</th>
                     <th>课程</th>
                     <th>分数</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -49,22 +53,28 @@
                     <td th:text="${score['sId']}">171001</td>
                     <td th:text="${score['sName']}">张三</td>
                     <td th:text="${score['cName']}">网建3班</td>
+                    <td th:text="${score['sYear']}">2018学年</td>
                     <td th:text="${score['couName']}">java</td>
                     <td th:text="${score['grade']}">80</td>
+                    <td>
+                        <a class="btn btn-primary"
+                           th:href="@{/toEditScore(scId=${score['scId']})}">修改</a>
+                        <a class="btn btn-danger"
+                           th:href="@{/delScore(scId=${score['scId']})}"
+                           id="delBtn">删除</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-
-
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
 <script src="js/coustomJs.js" th:src="@{/static/js/coustomJs.js}"></script>
 <!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="../../dist/js/bootstrap.min.js"></script>-->
+<script src="../../dist/js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>-->
 </body>
 </html>

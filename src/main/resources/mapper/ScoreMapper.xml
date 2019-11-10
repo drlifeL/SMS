@@ -6,10 +6,49 @@
 
 
     <select id="showStuScore" resultType="map">
-        select s.s_id sId,s_name sName,f.c_name cName,c.cou_name couName,sc.grade
+        select s.s_id sId,s_name sName,f.c_name cName,c.cou_name couName,sc.grade,s_year sYear,sc_id scId
         from stu_info s join faculty f on s.c_id = f.c_id
         join score sc on s.s_id = sc.s_id
         join course c on sc.cou_id = c.cou_id;
+    </select>
+
+    <select id="findAllCourse" resultType="cn.dxxy.entity.Course">
+        select * from course
+    </select>
+
+    <insert id="addScore">
+        insert into score(s_id,cou_id,grade,s_year,sc_id) values(#{sId},#{couId},#{grade},#{sYear},#{scId})
+    </insert>
+
+    <select id="findScoreByScId" resultType="map">
+        select s.s_id sId,s_name sName,f.c_name cName,c.cou_name couName,sc.grade,s_year sYear,sc_id scId
+        from stu_info s join faculty f on s.c_id = f.c_id
+        join score sc on s.s_id = sc.s_id
+        join course c on sc.cou_id = c.cou_id
+        where sc_id = #{scId}
+    </select>
+
+    <update id="updateScore">
+        update score set grade = #{grade} where sc_id = #{scId}
+    </update>
+
+    <delete id="delScoreById">
+        delete from score where sc_id = #{scId}
+    </delete>
+    <select id="findScoreByClass" resultType="map">
+        select s.s_id sId,s_name sName,f.c_name cName,c.cou_name couName,sc.grade,s_year sYear,sc_id scId
+        from stu_info s join faculty f on s.c_id = f.c_id
+        join score sc on s.s_id = sc.s_id
+        join course c on sc.cou_id = c.cou_id
+        where f.c_name = #{sInfo}
+    </select>
+
+    <select id="findScoreBySid" resultType="map">
+        select s.s_id sId,s_name sName,f.c_name cName,c.cou_name couName,sc.grade,s_year sYear,sc_id scId
+        from stu_info s join faculty f on s.c_id = f.c_id
+        join score sc on s.s_id = sc.s_id
+        join course c on sc.cou_id = c.cou_id
+        where s.s_id = #{scId}
     </select>
 
 </mapper>

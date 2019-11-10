@@ -3,13 +3,21 @@ package cn.dxxy.controller;
 import cn.dxxy.entity.Faculty;
 import cn.dxxy.entity.Student;
 import cn.dxxy.service.StudentService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import java.io.*;
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 
 @Controller
@@ -25,8 +33,11 @@ public class StudentController {
      * @return
      */
     @RequestMapping("/showStuInfo")
-    public String showStuInfo(Model model) {
+    public String showStuInfo(Model model, Integer start) {
+        PageHelper.startPage(1, 5);
         List<Student> allStu = studentService.findAllStu();
+        PageInfo<Student> pageInfo = new PageInfo<>(allStu, 5);
+        System.out.println(pageInfo);
         model.addAttribute("allStu", allStu);
         return "student/showStudent";
     }
@@ -100,7 +111,7 @@ public class StudentController {
     @RequestMapping("/delStu")
     public String delStu(@RequestParam("sId") String delId) {
         Student student = studentService.findStudentById(delId);
-        if(student!=null)
+        if (student != null)
             studentService.delStudent(student.getsId());
         return "forward:showStuInfo";
     }

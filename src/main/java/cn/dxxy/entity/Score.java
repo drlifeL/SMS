@@ -11,6 +11,26 @@ public class Score {
     private String couId;
     //成绩
     private Integer grade;
+    //学年
+    private String sYear;
+    //成绩唯一字段
+    private String scId;
+
+    public String getScId() {
+        return scId;
+    }
+
+    public void setScId(String scId) {
+        this.scId = scId;
+    }
+
+    public String getsYear() {
+        return sYear;
+    }
+
+    public void setsYear(String sYear) {
+        this.sYear = sYear;
+    }
 
     public String getsId() {
         return sId;
@@ -42,6 +62,8 @@ public class Score {
                 "sId='" + sId + '\'' +
                 ", couId='" + couId + '\'' +
                 ", grade=" + grade +
+                ", sYear='" + sYear + '\'' +
+                ", scId='" + scId + '\'' +
                 '}';
     }
 }
