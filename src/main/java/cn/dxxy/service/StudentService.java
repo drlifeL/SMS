@@ -1,7 +1,8 @@
 package cn.dxxy.service;
 
 import cn.dxxy.dao.StudentDao;
-import cn.dxxy.entity.Faculty;
+import cn.dxxy.entity.College;
+import cn.dxxy.entity.StuClass;
 import cn.dxxy.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,16 +29,16 @@ public class StudentService {
     /**
      * 返回所有的学院
      */
-    public List<String> findAllFaculty() {
-        return studentDao.findAllFaculty();
+    public List<College> findAllCollege() {
+        return studentDao.findAllCollege();
     }
 
-    public List<Faculty> getDeptDetail(String deptName) {
-        return studentDao.getDeptDetail(deptName);
+    public List<StuClass> getClassDetail(String deptId) {
+        return studentDao.getClassDetail(deptId);
     }
 
     /**
-     * 添加学生并级联更新学生人数
+     *
      * <p>
      * 注意：此处应该有事务功能
      *
@@ -53,7 +54,6 @@ public class StudentService {
      * @param sId
      * @return
      */
-
     public Student findStudentById(String sId) {
         return studentDao.findStudentById(sId);
     }

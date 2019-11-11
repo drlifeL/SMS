@@ -28,7 +28,28 @@
         <div th:replace="template::sideBar(ck='xy')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <span>当前位置->学院列表</span>
-
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>学院编号</th>
+                    <th>学院名称</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="college:${colleges}">
+                    <td>[[${college.collegeNum}]]</td>
+                    <td>[[${college.collegeName}]]</td>
+                    <td>
+                        <a class="btn btn-primary" href="#">修改</a>
+                        <a class="btn btn-danger" href="#">删除</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class ="operations-panel">
+                <button class="btn btn-primary">添加学院</button>
+            </div>
         </div>
     </div>
 </div>
@@ -37,7 +58,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
 <script src="js/coustomJs.js" th:src="@{/static/js/coustomJs.js}"></script>
-<!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-<script src="../../dist/js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>-->
+<!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+<script src="../../dist/js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
 </body>
 </html>

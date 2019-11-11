@@ -3,13 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.dxxy.dao.ScoreDao">
-
+    <sql id="selScore">
+        select s.s_id sId,s_name sName,scl.c_name cName,sc.grade grade,sc.sc_id scId,s_year sYear,cou.cou_name couName
+        from stu_info s join stu_class scl on s.c_id = scl.c_id
+        join score sc on sc.s_id  = s.s_id
+        join course cou on sc.cou_id = cou.cou_id
+    </sql>
 
     <select id="showStuScore" resultType="map">
-        select s.s_id sId,s_name sName,f.c_name cName,c.cou_name couName,sc.grade,s_year sYear,sc_id scId
-        from stu_info s join faculty f on s.c_id = f.c_id
-        join score sc on s.s_id = sc.s_id
-        join course c on sc.cou_id = c.cou_id;
+        <include refid="selScore"></include>
     </select>
 
     <select id="findAllCourse" resultType="cn.dxxy.entity.Course">
@@ -21,11 +23,8 @@
     </insert>
 
     <select id="findScoreByScId" resultType="map">
-        select s.s_id sId,s_name sName,f.c_name cName,c.cou_name couName,sc.grade,s_year sYear,sc_id scId
-        from stu_info s join faculty f on s.c_id = f.c_id
-        join score sc on s.s_id = sc.s_id
-        join course c on sc.cou_id = c.cou_id
-        where sc_id = #{scId}
+        <include refid="selScore"></include>
+        where sc.sc_id = #{scId}
     </select>
 
     <update id="updateScore">
@@ -36,18 +35,12 @@
         delete from score where sc_id = #{scId}
     </delete>
     <select id="findScoreByClass" resultType="map">
-        select s.s_id sId,s_name sName,f.c_name cName,c.cou_name couName,sc.grade,s_year sYear,sc_id scId
-        from stu_info s join faculty f on s.c_id = f.c_id
-        join score sc on s.s_id = sc.s_id
-        join course c on sc.cou_id = c.cou_id
-        where f.c_name = #{sInfo}
+        <include refid="selScore"></include>
+        where sc.sc_id = #{scId}
     </select>
 
     <select id="findScoreBySid" resultType="map">
-        select s.s_id sId,s_name sName,f.c_name cName,c.cou_name couName,sc.grade,s_year sYear,sc_id scId
-        from stu_info s join faculty f on s.c_id = f.c_id
-        join score sc on s.s_id = sc.s_id
-        join course c on sc.cou_id = c.cou_id
+        <include refid="selScore"></include>
         where s.s_id = #{scId}
     </select>
 

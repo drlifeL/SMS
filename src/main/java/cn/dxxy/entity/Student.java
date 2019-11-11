@@ -13,10 +13,8 @@ public class Student {
     private String cId;
     // 籍贯
     private String sPlace;
-    // 学生密码
-    private String sPassword;
-    //所属学院
-    private Faculty faculty;
+    //所属班级
+    private StuClass stuClass;
     //学生年龄字段
     private Integer sAge;
     //学生邮箱字段
@@ -78,20 +76,12 @@ public class Student {
         this.sPlace = sPlace;
     }
 
-    public String getsPassword() {
-        return sPassword;
+    public StuClass getStuClass() {
+        return stuClass;
     }
 
-    public void setsPassword(String sPassword) {
-        this.sPassword = sPassword;
-    }
-
-    public Faculty getFaculty() {
-        return faculty;
-    }
-
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
+    public void setStuClass(StuClass stuClass) {
+        this.stuClass = stuClass;
     }
 
     @Override
@@ -102,8 +92,7 @@ public class Student {
                 ", sSex='" + sSex + '\'' +
                 ", cId='" + cId + '\'' +
                 ", sPlace='" + sPlace + '\'' +
-                ", sPassword='" + sPassword + '\'' +
-                ", faculty=" + faculty +
+                ", stuClass=" + stuClass +
                 ", sAge=" + sAge +
                 ", sEmail='" + sEmail + '\'' +
                 '}';

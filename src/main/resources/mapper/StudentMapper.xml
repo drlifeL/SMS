@@ -4,31 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.dxxy.dao.StudentDao">
     <resultMap id="findStu" type="cn.dxxy.entity.Student" autoMapping="true">
-        <result column="c_departments" property="faculty.cDepartments"/>
-        <result column="c_name" property="faculty.cName"/>
+        <result column="college_name" property="stuClass.college.collegeName"/>
+        <result column="c_name" property="stuClass.cName"/>
     </resultMap>
     <!-- 查询所有学生 -->
     <select id="findAllStu" resultMap="findStu">
-    select s.s_id,s_name,s_sex,s_place,s_age,s_email,f.c_departments,c_name from
-    stu_info s join faculty f
-    on s.c_id = f.c_id
+        select s.s_id,s_name,s_sex,s_place,s_age,s_email,sc.c_name, co.college_name
+        from stu_info s join stu_class sc on s.c_id = sc.c_id
+        join college co on sc.col_id = co.college_num
     </select>
 
     <!-- 查询所有的学院 -->
-    <select id="findAllFaculty" resultType="string">
-       SELECT distinct c_departments
-       FROM `faculty`
+    <select id="findAllCollege" resultType="cn.dxxy.entity.College">
+        select college_num collegeNum,college_name collegeName  from college
     </select>
 
-    <resultMap id="detailClass" type="cn.dxxy.entity.Faculty" autoMapping="true">
-        <id column="c_id" property="cId"/>
-        <result column="c_name" property="cName"/>
-        <result column="c_departments" property="cDepartments"/>
-    </resultMap>
+    <!--    <resultMap id="detailClass" type="cn.dxxy.entity.Faculty" autoMapping="true">-->
+    <!--        <id column="c_id" property="cId"/>-->
+    <!--        <result column="c_name" property="cName"/>-->
+    <!--        <result column="c_departments" property="cDepartments"/>-->
+    <!--    </resultMap>-->
 
     <!-- 给定一个学院，查询该学院下的所有班级 -->
-    <select id="getDeptDetail" resultType="cn.dxxy.entity.Faculty">
-        select c_id,c_name from faculty where c_departments = #{deptName}
+    <select id="getClassDetail" resultType="cn.dxxy.entity.StuClass">
+        select c_id cId,c_name cName from stu_class where col_id =#{deptId}
     </select>
 
     <!-- 添加学生 -->
@@ -39,37 +38,42 @@
     </insert>
 
     <resultMap id="findStuById" type="cn.dxxy.entity.Student" autoMapping="true">
-        <association property="faculty" javaType="cn.dxxy.entity.Faculty" autoMapping="true">
-        </association>
+        <result column="cName" property="stuClass.cName"/>
+        <result column="collegeNum" property="stuClass.college.collegeNum"/>
+        <result column="collegeName" property="stuClass.college.collegeName"/>
     </resultMap>
     <select id="findStudentById" resultMap="findStuById">
-        select * from stu_info s join faculty f on s.c_id = f.c_id where s_id = #{sId}
+        select s.s_id sId,s_name sName,s_sex sSex,s_place sPlace,s_email sEmail ,s_age sAge,
+        sc.c_id cId,c_name cName,co.college_num collegeNum,college_name collegeName
+        from stu_info s join stu_class sc on s.c_id = sc.c_id
+        join college co on sc.col_id = co.college_num
+        where s.s_id = #{sId}
     </select>
 
-    <update id="updateStu">
-        update stu_info
-        <set>
-            <if test="sName!=null">
-                s_name = #{sName},
-            </if>
-            <if test="sSex!=null">
-                s_sex = #{sSex},
-            </if>
-            <if test="cId!=null">
-                c_id = #{cId},
-            </if>
-            <if test="sPlace!=null">
-                s_place = #{sPlace},
-            </if>
-            <if test="sAge!=null">
-                s_age = #{sAge},
-            </if>
-            <if test="sEmail!=null">
-                s_email = #{sEmail}
-            </if>
-        </set>
-        where s_id = #{sId}
-    </update>
+        <update id="updateStu">
+            update stu_info
+            <set>
+                <if test="sName!=null">
+                    s_name = #{sName},
+                </if>
+                <if test="sSex!=null">
+                    s_sex = #{sSex},
+                </if>
+                <if test="cId!=null">
+                    c_id = #{cId},
+                </if>
+                <if test="sPlace!=null">
+                    s_place = #{sPlace},
+                </if>
+                <if test="sAge!=null">
+                    s_age = #{sAge},
+                </if>
+                <if test="sEmail!=null">
+                    s_email = #{sEmail}
+                </if>
+            </set>
+            where s_id = #{sId}
+        </update>
 
 
     <delete id="delStudent">

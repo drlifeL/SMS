@@ -1,18 +1,16 @@
 package cn.dxxy.entity;
 
-import java.util.List;
 
 /**
- * 学院信息
+ * 班级信息
  */
-public class Faculty {
+public class StuClass {
     //班级号
     private String cId;
     //班级名称 非空、唯一校验
     private String cName;
     // 所属学院
-    private String cDepartments;
-
+    private College college;
 
     public String getcId() {
         return cId;
@@ -30,20 +28,20 @@ public class Faculty {
         this.cName = cName;
     }
 
-    public String getcDepartments() {
-        return cDepartments;
+    public College getCollege() {
+        return college;
     }
 
-    public void setcDepartments(String cDepartments) {
-        this.cDepartments = cDepartments;
+    public void setCollege(College college) {
+        this.college = college;
     }
 
     @Override
     public String toString() {
-        return "Faculty{" +
+        return "StuClass{" +
                 "cId='" + cId + '\'' +
                 ", cName='" + cName + '\'' +
-                ", cDepartments='" + cDepartments + '\'' +
+                ", college=" + college +
                 '}';
     }
 }

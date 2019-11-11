@@ -58,9 +58,9 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">院系</label>
                     <div class="col-sm-2">
-                        <select class="form-control" name="faculty.cDepartments" id="department">
+                        <select class="form-control" name="stuClass.college.collegeNum" id="department">
                             <option value="None" th:attr="page='edit'">--请选择--</option>
-                            <option th:each="depart:${departs}" th:value="${depart}" th:selected="${depart==stuInfo.faculty.cDepartments}">[[${depart}]]</option>
+                            <option th:each="depart:${departs}" th:value="${depart.collegeNum}" th:selected="${depart.collegeNum==stuInfo.stuClass.college.collegeNum}">[[${depart.collegeName}]]</option>
                         </select>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                     <div class="col-sm-2">
                         <select class="form-control" id="deptDetail" name="cId">
                             <option>--请选择--</option>
-                            <option  th:each="detail:${fDetail}" th:value="${detail.cId}" th:selected="${detail.cName==stuInfo.faculty.cName}">[[${detail.cName}]]</option>
+                            <option  th:each="detail:${fDetail}" th:value="${detail.cId}" th:selected="${detail.cId==stuInfo.cId}">[[${detail.cName}]]</option>
                         </select>
                     </div>
                 </div>

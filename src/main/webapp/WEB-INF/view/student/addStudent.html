@@ -61,7 +61,7 @@
                     <div class="col-sm-2 distanceL">
                         <select class="form-control" name="faculty.cDepartments" id = "department">
                             <option value="None">--请选择--</option>
-                            <option th:each="faculty:${facultys}" th:value="${faculty}">[[${faculty}]]</option>
+                            <option th:each="college:${colleges}" th:value="${college.collegeNum}">[[${college.collegeName}]]</option>
                         </select>
                     </div>
                     <div class="col-sm-2 distanceR">

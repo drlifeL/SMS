@@ -1,6 +1,7 @@
 package cn.dxxy.dao;
 
-import cn.dxxy.entity.Faculty;
+import cn.dxxy.entity.College;
+import cn.dxxy.entity.StuClass;
 import cn.dxxy.entity.Student;
 import javafx.beans.DefaultProperty;
 
@@ -11,9 +12,9 @@ public interface StudentDao {
     //查询所有学生
     List<Student> findAllStu();
     //查询所有二级学院
-    List<String> findAllFaculty();
+    List<College> findAllCollege();
     //根绝学院名称，拿到学院下的班级和cid
-    List<Faculty> getDeptDetail(String deptName);
+    List<StuClass> getClassDetail(String deptId);
     //添加学生
     void addStudent(Student student);
     //根据sId查找学生

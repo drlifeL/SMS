@@ -54,17 +54,23 @@
         </li>
         <li th:class="${ck}=='xy'?'active':''">
             <a href="#" class ="xlMenu">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 学院管理
+                <span aria-hidden="true" th:class="${ck}=='xy'?'glyphicon glyphicon-minus-sign':'glyphicon glyphicon-plus-sign'"></span> 学院管理
             </a>
             <ul th:class="${ck}=='xy'?'show detailUl':'hidden detailUl'">
                 <li>
-                    <a href="#">学院列表</a>
+                    <a href="#" th:href="@{/showAllCollege}">学院列表</a>
+                </li>
+                <li>
+                    <a href="#" >专业展示</a>
+                </li>
+                <li>
+                    <a href="#">课程列表</a>
                 </li>
             </ul>
         </li>
         <li th:class="${ck}=='user'?'active':''">
             <a href="#" class ="xlMenu">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 用户管理
+                <span aria-hidden="true" th:class="${ck}=='user'?'glyphicon glyphicon-minus-sign':'glyphicon glyphicon-plus-sign'"></span> 用户管理
             </a>
             <ul th:class="${ck}=='user'?'show detailUl':'hidden detailUl'">
                 <li>

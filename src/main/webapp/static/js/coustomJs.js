@@ -10,12 +10,12 @@ $().ready(function () {
     //添加学生界面中异步获取学院信息。
     $("#department").change(function () {
         //获取到当前选择的是哪个学院
-        var deptName = $("#department").prop("value");
-        if (deptName != "None") {
+        var deptId = $("#department").prop("value");
+        if (deptId != "None") {
             $.ajax({
                 type: "POST",
                 url: "/getClassDetail",
-                data: "deptName=" + deptName,
+                data: "deptId=" + deptId,
                 dataType: "json",
                 success: function (res) {
                     //移除上次选择的结果
@@ -29,7 +29,7 @@ $().ready(function () {
         }
     });
     //删除学生 ,使用事件对象阻止a标签的默认行为.
-    $("#delBtn").click(function (event) {
+    $("a[name='delBtn']").click(function (event) {
         if (!confirm("确认要删除这条记录吗?")) {
             window.event.returnValue = false;
         }
