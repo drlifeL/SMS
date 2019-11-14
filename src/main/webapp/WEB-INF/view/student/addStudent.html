@@ -25,81 +25,86 @@
     <div class="row">
         <div th:replace="template::sideBar (ck='stu')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <form class="form-horizontal" method="post" th:action="@{/addStudent}">
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">学号</label>
-                    <label class="col-sm-3 control-label">姓名</label>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-2 distanceL">
-                        <input type="text" class="form-control" name="sId"/>
+            <div class="row"><span>当前位置->学生添加</span></div>
+            <div class="row">
+                <form class="form-horizontal" method="post" th:action="@{/addStudent}">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">学号</label>
+                        <label class="col-sm-3 control-label">姓名</label>
                     </div>
-                    <div class="col-sm-2 distanceR">
-                        <input type="text" class="form-control" name="sName"/>
+                    <div class="form-group">
+                        <div class="col-sm-2 distanceL">
+                            <input type="text" class="form-control" name="sId"/>
+                        </div>
+                        <div class="col-sm-2 distanceR">
+                            <input type="text" class="form-control" name="sName"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">性别</label>
-                    <label class="col-sm-3 control-label">年龄</label>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-2 distanceL">
-                        <select class="form-control" name="sSex">
-                            <option value="男">男</option>
-                            <option value="女">女</option>
-                        </select>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">性别</label>
+                        <label class="col-sm-3 control-label">年龄</label>
                     </div>
-                    <div class="col-sm-2 distanceR">
-                        <input type="text" class="form-control" name="sAge"/>
+                    <div class="form-group">
+                        <div class="col-sm-2 distanceL">
+                            <select class="form-control" name="sSex">
+                                <option value="男">男</option>
+                                <option value="女">女</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 distanceR">
+                            <input type="text" class="form-control" name="sAge"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">院系</label>
-                    <label class="col-sm-3 control-label">班级</label>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-2 distanceL">
-                        <select class="form-control" name="faculty.cDepartments" id = "department">
-                            <option value="None">--请选择--</option>
-                            <option th:each="college:${colleges}" th:value="${college.collegeNum}">[[${college.collegeName}]]</option>
-                        </select>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">院系</label>
+                        <label class="col-sm-3 control-label">专业</label>
                     </div>
-                    <div class="col-sm-2 distanceR">
-                        <select class="form-control" id = "deptDetail" name="cId">
-                            <option>--请选择--</option>
-                        </select>
+                    <div class="form-group">
+                        <div class="col-sm-2 distanceL">
+                            <select class="form-control" name="faculty.cDepartments" id="department">
+                                <option value="None">--请选择--</option>
+                                <option th:each="college:${colleges}" th:value="${college.collegeNum}">
+                                    [[${college.collegeName}]]
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 distanceR">
+                            <select class="form-control" id="deptDetail" name="cId">
+                                <option>--请选择--</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">籍贯</label>
-                    <label class="col-sm-3 control-label">邮箱</label>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-2 distanceL">
-                        <input type="text" class="form-control" name="sPlace"/>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">籍贯</label>
+                        <label class="col-sm-3 control-label">邮箱</label>
                     </div>
-                    <div class="col-sm-2 distanceR">
-                        <input type="email" class="form-control" name = "sEmail"/>
+                    <div class="form-group">
+                        <div class="col-sm-2 distanceL">
+                            <input type="text" class="form-control" name="sPlace"/>
+                        </div>
+                        <div class="col-sm-2 distanceR">
+                            <input type="email" class="form-control" name="sEmail"/>
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-2 distanceL">
-                        <button type="submit" class="btn btn-primary btn-block"
-                                style="background-color: #007bff;border-color: #007bff">添加
-                        </button>
+                    <div class="form-group">
+                        <div class="col-sm-2 distanceL">
+                            <button type="submit" class="btn btn-primary btn-block"
+                                    style="background-color: #007bff;border-color: #007bff">添加
+                            </button>
+                        </div>
+                        <div class="col-sm-2 distanceR">
+                            <button type="button" class="btn btn-primary btn-block"
+                                    style="background-color: #6c757d;border-color: #6c757d">取消
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-sm-2 distanceR">
-                        <button type="button" class="btn btn-primary btn-block"
-                                style="background-color: #6c757d;border-color: #6c757d">取消
-                        </button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 <script src="js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
-<script src="js/coustomJs.js" th:src="@{/static/js/coustomJs.js}" ></script>
+<script src="js/coustomJs.js" th:src="@{/static/js/coustomJs.js}"></script>
 </body>
 </html>

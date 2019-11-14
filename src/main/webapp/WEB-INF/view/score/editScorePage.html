@@ -25,51 +25,55 @@
     <div class="row">
         <div th:replace="template::sideBar (ck='sc')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <form class="form-horizontal" method="post" th:action="@{/updateScore}">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">学号</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="sId" th:value="${score['sId']}" readonly/>
+            <div class="row"><span>当前位置->修改成绩</span></div>
+            <div class="row">
+                <form class="form-horizontal" method="post" th:action="@{/updateScore}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">学号</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sId" th:value="${score['sId']}" readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">姓名</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="sName" th:value="${score['sName']}" readonly>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sName" th:value="${score['sName']}" readonly>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">班级</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="cName" th:value="${score['cName']}" readonly/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">班级</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="cName" th:value="${score['cName']}" readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">学年</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="sYear" th:value="${score['sYear']}" readonly/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">学年</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sYear" th:value="${score['sYear']}" readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">课程</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="couName" th:value="${score['couName']}" readonly/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">课程</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="couName" th:value="${score['couName']}"
+                                   readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">分数</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="grade" th:value="${score['grade']}"/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">分数</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="grade" th:value="${score['grade']}"/>
+                        </div>
                     </div>
-                </div>
-                <input type="hidden" name="scId" th:value="${score['scId']}">
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">修改</button>
-                        <button type="button" class="btn btn-default">取消</button>
+                    <input type="hidden" name="scId" th:value="${score['scId']}">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">修改</button>
+                            <button type="button" class="btn btn-default">取消</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>

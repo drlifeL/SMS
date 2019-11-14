@@ -2,12 +2,12 @@ package cn.dxxy.entity;
 
 
 /**
- * 班级信息
+ * 专业信息
  */
 public class StuClass {
-    //班级号
+    //专业号
     private String cId;
-    //班级名称 非空、唯一校验
+    //专业名称 非空、唯一校验
     private String cName;
     // 所属学院
     private College college;

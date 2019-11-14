@@ -34,4 +34,102 @@ $().ready(function () {
             window.event.returnValue = false;
         }
     });
+    //添加学院
+    $("#mtadd").click(function () {
+        $("#mtform").submit();
+        $('#myModal').modal('hide')
+    });
+
+    //修改学院
+    $("button[name='updateBtnCol']").click(function () {
+        var collegeNum = $(this).parent("td").parent("tr").find("td:first").text();
+        $.ajax({
+            type: "POST",
+            url: "/getCollegeDetailById",
+            data: "collegeNum=" + collegeNum,
+            dataType: "json",
+            success: function (res) {
+                $("#UpModal form input[name='collegeNum']").prop("value", res.collegeNum);
+                $("#UpModal form input[name='collegeName']").prop("value", res.collegeName);
+                $("#UpModal").modal("show");
+            }
+        })
+    })
+    $("#upadd").click(function () {
+        $("#upform").submit();
+        $("#UpModal").modal("hide");
+    })
+
+    //专业展示下拉列表框
+    $("#selCollege").change(function () {
+        var collegeNum = $("#selCollege").val();
+        if (collegeNum != 'None') {
+            $.ajax({
+                type: "POST",
+                url: "/getClassDetail",
+                data: "deptId=" + collegeNum,
+                dataType: "json",
+                success: function (res) {
+                    var tb = $("#colId").find("tbody");
+                    $(tb).find("tr").remove();
+                    $(res).each(function (i, e) {
+                        var tr = $("<tr></tr>");
+                        var tdNum = $("<td>" + res[i].cId + "</td>")
+                        var tdName = $("<td>" + res[i].cName + "</td>")
+                        var btn = $("<td><a class ='btn btn-primary' href='/getCourseBySpId?spId=" + res[i].cId + "'>查看课程</a></td>")
+                        $(tr).append(tdNum).append(tdName).append(btn).appendTo(tb);
+                    })
+                }
+            })
+        }
+    });
+    //添加班级的模态框
+    $("#addClass").click(function () {
+        //被选中的Value
+        var sValue = $("#selCollege").val();
+        //console.log(sValue);
+        if (sValue != 'None') {
+            //被选中学院的名称
+            var sText = $("#selCollege>option:selected").text()
+            //console.log();
+            $("#initCollege>span").text("").text(sText);
+            $("#initCollege>input").prop("value", sValue);
+            $("#classModal").modal('show');
+        } else {
+            alert("请先选择学院！");
+        }
+    });
+    //添加班级模态框表单提交
+    $("#classAdd").click(function () {
+        $("#classModal form").submit();
+    })
+
+    //添加课程模态框
+    $("#addCourse").click(function () {
+        var spName = $("#sp>input[name='spName']").val();
+        var spId = $("#sp>input[name='spId']").val();
+        $("#initCourse>span").text("").text(spName);
+        $("#initCourse>input[name='cId']").val(spId);
+        var selNode = $("#initCourse").parent("form").find("select");
+        $.ajax({
+            type: "POST",
+            url: "/findAllCourseDetail",
+            dataType: "json",
+            success: function (res) {
+                $(selNode).find("option:not(:first)").remove();
+                $(res).each(function (i, o) {
+                    $("<option value='" + res[i].couId + "'>" + res[i].couName + "</option>").appendTo(selNode);
+                })
+            }
+        });
+
+        $("#classModal").modal("show");
+
+    })
+    //提交添加课程
+    $("#adCourBtn").click(function () {
+        $("#adCourseform").submit();
+        $("#myModal").modal("hide");
+    })
+
 });

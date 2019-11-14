@@ -7,5 +7,43 @@
     <select id="findAllCollege" resultType="cn.dxxy.entity.College">
         select college_num collegeNum,college_name collegeName from college;
     </select>
+    <insert id="addCollege">
+        insert into college values(#{collegeNum},#{collegeName})
+    </insert>
+    <select id="getCollegeDetailById" resultType="cn.dxxy.entity.College">
+        select college_num collegeNum,college_name collegeName
+        from college
+        where college_num = #{collegeNum}
+    </select>
+
+    <update id="updateCollege">
+        update college
+        set college_name = #{collegeName}
+        where college_num = #{collegeNum}
+    </update>
+    <delete id="delCollege">
+        delete from college
+        where college_num = #{collegeNum}
+    </delete>
+    <insert id="addClassByCollege">
+        insert into stu_class values(#{cId},#{cName},#{college.collegeNum})
+    </insert>
+    <select id="getCourseBySpId" resultType="cn.dxxy.entity.Course">
+        select course.cou_id couId,cou_name couName
+        from selCourse join course on course.cou_id = selCourse.cou_id
+        where selCourse.c_id = #{spId}
+    </select>
+    <select id="getSpById" resultType="cn.dxxy.entity.StuClass">
+        select c_id cId,c_name cName from stu_class  where c_id = #{spId}
+    </select>
+    <select id="findAllCourse" resultType="cn.dxxy.entity.Course">
+        select cou_id couId,cou_name couName from course
+    </select>
+    <insert id="addCourse">
+        insert into course values(#{couId},#{couName})
+    </insert>
+    <insert id="addCourseBySp">
+        insert into selCourse values(#{id},#{cId},#{couId})
+    </insert>
 
 </mapper>

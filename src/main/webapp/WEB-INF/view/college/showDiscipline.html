@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>学生管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet" th:href="@{/static/css/dashboard.css}">
+    <link href="css/customIndex.css" rel="stylesheet" th:href="@{/static/css/customIndex.css}">
+</head>
+
+
+<body>
+
+<div th:replace="template::topBar"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div th:replace="template::sideBar(ck='xy')"></div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <div class="row"><span>当前位置->专业列表</span></div>
+            <div class="row">
+                <div class="col-md-2 ml30 mt20">
+                    <select class="form-control" id="selCollege">
+                        <option value="None">--请选择院系--</option>
+                        <option th:each="college:${colleges}" th:value="${college.collegeNum}">
+                            [[${college.collegeName}]]
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-6 ml30">
+                    <table class="table table-bordered" id="colId">
+                        <thead>
+                        <th>专业号</th>
+                        <th>专业名称</th>
+                        <th>操作</th>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div>
+                        <button class="btn btn-primary" id="addClass">添加班级</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="classModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">班级添加</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" th:action="@{/addClassByCollege}">
+                    <div class="form-group" id="initCollege">
+                        <label>学院名称</label>
+                        <span style="display: block;font-size: 18px;color:#645e5e;"></span>
+                        <input type="hidden" name="college.collegeNum"/>
+                    </div>
+                    <div class="form-group">
+                        <label>专业编号</label>
+                        <input type="text" class="form-control" name = "cId"/>
+                    </div>
+                    <div class="form-group">
+                        <label>专业名称</label>
+                        <input type="text" class="form-control" name = "cName">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id = "classAdd">添加</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<script src="js/coustomJs.js" th:src="@{/static/js/coustomJs.js}"></script>
+<!--<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+<script src="../../dist/js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
+</body>
+</html>

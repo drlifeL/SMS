@@ -25,38 +25,42 @@
     <div class="row">
         <div th:replace="template::sideBar (ck='stu')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>学号</th>
-                        <th>姓名</th>
-                        <th>性别</th>
-                        <th>年龄</th>
-                        <th>班级</th>
-                        <th>院系</th>
-                        <th>邮箱</th>
-                        <th>籍贯</th>
-                        <th>操作</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="stu:${allStu}">
-                        <td th:text="${stu.sId}">1710206244</td>
-                        <td th:text="${stu.sName}">张三</td>
-                        <td th:text="${stu.sSex}">男</td>
-                        <td th:text="${stu.sAge}">18</td>
-                        <td th:text="${stu.stuClass.cName}">网站建设3班</td>
-                        <td th:text="${stu.stuClass.college.collegeName}">大数据与数字媒体</td>
-                        <td th:text="${stu.sEmail}">xx@qq.com</td>
-                        <td th:text="${stu.sPlace}">重庆</td>
-                        <td>
-                            <a class="btn btn-default" role="button" th:href="@{/toEditPage(sId=${stu.sId})}">修改</a>
-                            <a class="btn btn-default" role="button" th:href="@{/delStu(sId=${stu.sId})}" name = "delBtn">删除</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="row"><span>当前位置->学生列表</span></div>
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>学号</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>年龄</th>
+                            <th>院系</th>
+                            <th>专业</th>
+                            <th>邮箱</th>
+                            <th>籍贯</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="stu:${allStu}">
+                            <td th:text="${stu.sId}">1710206244</td>
+                            <td th:text="${stu.sName}">张三</td>
+                            <td th:text="${stu.sSex}">男</td>
+                            <td th:text="${stu.sAge}">18</td>
+                            <td th:text="${stu.stuClass.college.collegeName}">大数据与数字媒体</td>
+                            <td th:text="${stu.stuClass.cName}">网站建设3班</td>
+                            <td th:text="${stu.sEmail}">xx@qq.com</td>
+                            <td th:text="${stu.sPlace}">重庆</td>
+                            <td>
+                                <a class="btn btn-default" role="button" th:href="@{/toEditPage(sId=${stu.sId})}">修改</a>
+                                <a class="btn btn-default" role="button" th:href="@{/delStu(sId=${stu.sId})}"
+                                   name="delBtn">删除</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination">

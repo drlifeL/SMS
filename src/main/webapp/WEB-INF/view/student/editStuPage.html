@@ -25,73 +25,81 @@
     <div class="row">
         <div th:replace="template::sideBar (ck='stu')"></div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <form class="form-horizontal" method="post" th:action="@{/updateStu}">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">学号</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="sId" th:value="${stuInfo.sId}" readonly/>
+            <div class="row"><span>当前位置->学生修改</span></div>
+            <div class="row">
+                <form class="form-horizontal" method="post" th:action="@{/updateStu}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">学号</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sId" th:value="${stuInfo.sId}" readonly/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">姓名</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="sName" th:value="${stuInfo.sName}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">姓名</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sName" th:value="${stuInfo.sName}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">性别</label>
-                    <div class="col-sm-2">
-                        <label class="radio-inline">
-                            <input type="radio" name="sSex" value="男" th:checked="${stuInfo.sSex=='男'}"> 男
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="sSex" value="女" th:checked="${stuInfo.sSex=='女'}"> 女
-                        </label>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-2">
+                            <label class="radio-inline">
+                                <input type="radio" name="sSex" value="男" th:checked="${stuInfo.sSex=='男'}"> 男
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="sSex" value="女" th:checked="${stuInfo.sSex=='女'}"> 女
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">年龄</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="sAge" th:value="${stuInfo.sAge}">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">年龄</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sAge" th:value="${stuInfo.sAge}">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">院系</label>
-                    <div class="col-sm-2">
-                        <select class="form-control" name="stuClass.college.collegeNum" id="department">
-                            <option value="None" th:attr="page='edit'">--请选择--</option>
-                            <option th:each="depart:${departs}" th:value="${depart.collegeNum}" th:selected="${depart.collegeNum==stuInfo.stuClass.college.collegeNum}">[[${depart.collegeName}]]</option>
-                        </select>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">院系</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" name="stuClass.college.collegeNum" id="department">
+                                <option value="None" th:attr="page='edit'">--请选择--</option>
+                                <option th:each="depart:${departs}" th:value="${depart.collegeNum}"
+                                        th:selected="${depart.collegeNum==stuInfo.stuClass.college.collegeNum}">
+                                    [[${depart.collegeName}]]
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">班级</label>
-                    <div class="col-sm-2">
-                        <select class="form-control" id="deptDetail" name="cId">
-                            <option>--请选择--</option>
-                            <option  th:each="detail:${fDetail}" th:value="${detail.cId}" th:selected="${detail.cId==stuInfo.cId}">[[${detail.cName}]]</option>
-                        </select>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">专业</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" id="deptDetail" name="cId">
+                                <option>--请选择--</option>
+                                <option th:each="detail:${fDetail}" th:value="${detail.cId}"
+                                        th:selected="${detail.cId==stuInfo.cId}">[[${detail.cName}]]
+                                </option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">籍贯</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="sPlace" th:value="${stuInfo.sPlace}"/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">籍贯</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sPlace" th:value="${stuInfo.sPlace}"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">邮箱</label>
-                    <div class="col-sm-2">
-                        <input type="text" class="form-control" name="sEmail" th:value="${stuInfo.sEmail}"/>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" name="sEmail" th:value="${stuInfo.sEmail}"/>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default">修改</button>
-                        <button type="button" class="btn btn-default">取消</button>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">修改</button>
+                            <button type="button" class="btn btn-default">取消</button>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
