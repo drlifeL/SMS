@@ -44,4 +44,23 @@
         where s.s_id = #{scId}
     </select>
 
+    <resultMap id="findStu" type="cn.dxxy.entity.Student" autoMapping="true">
+        <result column="cName" property="stuClass.cName"/>
+        <result column="collegeNum" property="stuClass.college.collegeNum"/>
+        <result column="collegeName" property="stuClass.college.collegeName"/>
+    </resultMap>
+    <select id="findStuById" resultMap="findStu">
+        select s.s_id sId,s_name sName,s_sex sSex,s_place sPlace,s_email sEmail ,s_age sAge,
+        sc.c_id cId,c_name cName,co.college_num collegeNum,college_name collegeName
+        from stu_info s join stu_class sc on s.c_id = sc.c_id
+        join college co on sc.col_id = co.college_num
+        where s.s_id = #{sId}
+    </select>
+
+    <select id="findCourseBySpId" resultType="cn.dxxy.entity.Course">
+        select course.cou_id couId,cou_name couName
+        from course  join selCourse on course.cou_id = selCourse.cou_id
+        where c_id = #{spId}
+    </select>
+
 </mapper>

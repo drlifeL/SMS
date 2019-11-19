@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/static/css/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="bg">
+    <div class="login-box">
+        <div class="login-person">
+            <div style="text-align: center">用户密码登录</div>
+            <div class="login-component">
+                <form method="post" action="/toLogin">
+                    <input name="aId" placeholder="请输入用户名"/><br/>
+                    <input type="password" name="aPassword" placeholder="请输入密码"/><br/>
+                    <button type="submit">登录</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

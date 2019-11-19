@@ -30,4 +30,27 @@
         <property name="basePackage" value="cn.dxxy.dao"/>
     </bean>
 
+    <bean id ="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="comboPooledDataSource"/>
+    </bean>
+    <!-- 基于注解的事务 -->
+<!--    <tx:annotation-driven/>-->
+
+    <!--     声明式事务 -->
+    <aop:config>
+        <aop:pointcut id="txPoint" expression="execution(* cn.dxxy.service..*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPoint"/>
+    </aop:config>
+    <!-- 事务增强 -->
+    <tx:advice id="txAdvice">
+        <tx:attributes>
+            <tx:method  name="*" rollback-for="java.lang.Exception"></tx:method>
+            <tx:method name="find*" read-only="true"/>
+            <tx:method name="get*" read-only="true"/>
+            <tx:method name="show*" read-only="true"/>
+            <tx:method name="userExist" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+
 </beans>

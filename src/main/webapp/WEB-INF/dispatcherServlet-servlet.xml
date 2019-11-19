@@ -37,10 +37,13 @@
     <mvc:default-servlet-handler/>
     <!--使用SpringMVC的高级功能-->
     <mvc:annotation-driven/>
-
-    <mvc:view-controller path="/" view-name="index"/>
-
-
-
-
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <mvc:exclude-mapping path="/toLogin"/>
+            <mvc:exclude-mapping path="/toLoginPage"/>
+            <bean class ="cn.dxxy.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+    <mvc:view-controller path="initLogin" view-name="login"/>
 </beans>

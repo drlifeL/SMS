@@ -31,4 +31,6 @@ public interface CollegeDao {
     void addCourse(Course course);
 
     void addCourseBySp(@Param("id") String uuid, @Param("cId") String cId, @Param("couId") String couId);
+
+    List<Course> findAllCourseDetailById(String spId);
 }

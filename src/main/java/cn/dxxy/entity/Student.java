@@ -13,7 +13,7 @@ public class Student {
     private String cId;
     // 籍贯
     private String sPlace;
-    //所属班级
+    //所属专业
     private StuClass stuClass;
     //学生年龄字段
     private Integer sAge;

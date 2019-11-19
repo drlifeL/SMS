@@ -9,9 +9,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
@@ -29,11 +27,11 @@ public class StudentController {
      * @return
      */
     @RequestMapping("/showStuInfo")
-    public String showStuInfo(Model model, Integer start) {
-        //PageHelper.startPage(1, 5);
+    public String showStuInfo(Model model, @RequestParam(name = "start", defaultValue = "1") Integer start) {
+        PageHelper.startPage(start, 5);
         List<Student> allStu = studentService.findAllStu();
-        //PageInfo<Student> pageInfo = new PageInfo<>(allStu, 5);
-        model.addAttribute("allStu", allStu);
+        PageInfo<Student> pageInfo = new PageInfo<>(allStu, 5);
+        model.addAttribute("pageInfo", pageInfo);
         return "student/showStudent";
     }
 
@@ -50,7 +48,6 @@ public class StudentController {
         model.addAttribute("colleges", colleges);
         return "student/addStudent";
     }
-//
 
     /**
      * 添加学生
@@ -127,5 +124,9 @@ public class StudentController {
         return "redirect:showStuInfo";
     }
 
+    @RequestMapping("/")
+    public String showMainPage() {
+        return "redirect:showStuInfo";
+    }
 
 }

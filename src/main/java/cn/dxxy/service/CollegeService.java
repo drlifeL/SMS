@@ -59,4 +59,8 @@ public class CollegeService {
     public void addCourseBySp(String cId, String couId) {
         collegeDao.addCourseBySp(Util.getUUID(),cId,couId);
     }
+
+    public List<Course> findAllCourseDetailById(String spId) {
+        return collegeDao.findAllCourseDetailById(spId);
+    }
 }

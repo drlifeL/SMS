@@ -12,7 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        return false;
+        Object user = request.getSession().getAttribute("user");
+        if (user == null) {
+            request.getRequestDispatcher("WEB-INF/view/login.html").forward(request, response);
+            return false;
+        }
+        return true;
     }
 
     @Override

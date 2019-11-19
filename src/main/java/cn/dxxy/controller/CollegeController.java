@@ -96,11 +96,11 @@ public class CollegeController {
         return "redirect:showCourses";
     }
 
-    //所有的课程信息。打包成JSON数据
+    //返回当前专业下所有未选的课程。打包成JSON数据
     @ResponseBody
-    @RequestMapping("/findAllCourseDetail")
-    public List<Course> findAllCourseDetail() {
-        return collegeService.findAllCourse();
+    @RequestMapping("/findAllCourseDetailById")
+    public List<Course> findAllCourseDetailById(String spId) {
+        return collegeService.findAllCourseDetailById(spId);
     }
 
     /**

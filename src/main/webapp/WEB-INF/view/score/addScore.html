@@ -29,7 +29,7 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <span>当前位置->成绩录入</span>
             <p class="information">注意学号,注意学号,注意学号！！！重要的事情说三遍！</p>
-            <form method="post" action="/addScore">
+            <form method="post" action="/addScore" id ="addScoreForm">
                 <table class="table table-bordered">
                     <thead>
                     <th>学号</th>
@@ -39,14 +39,17 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td><input class="form-control" name="sId"/></td>
+                        <td>
+                            <div class="form-group has-feedback" style="margin-bottom: 0px">
+                                <input type="text" class="form-control" id="sIdInput" name = "sId">
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"
+                                      style="display: none;"></span>
+                            </div>
+                        </td>
                         <td><input class="form-control" name="sYear"/></td>
                         <td>
-                            <select class="form-control" name="couId">
-                                <option>--请选择--</option>
-                                <option th:each="course:${courseList}" th:value="${course.couId}">
-                                    [[${course.couName}]]
-                                </option>
+                            <select class="form-control" name="couId" id = "addScoreSel">
+                                <option value="None">--请选择--</option>
                             </select>
                         </td>
                         <td><input class="form-control" name="grade"/></td>
@@ -54,9 +57,9 @@
                     </tbody>
                 </table>
                 <div class="operations-panel">
-                    <button class="btn btn-orange">重置</button>
+                    <button class="btn btn-orange" id = "addScoreRstBtn">重置</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button type="submit" class="btn btn-primary">提交</button>
+                    <button type="button" class="btn btn-primary" id = "addScoreSubBtn">提交</button>
                 </div>
             </form>
 

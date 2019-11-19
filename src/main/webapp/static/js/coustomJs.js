@@ -81,6 +81,8 @@ $().ready(function () {
                     })
                 }
             })
+        } else {
+            $("#colId").find("tbody>tr").remove();
         }
     });
     //添加班级的模态框
@@ -113,7 +115,9 @@ $().ready(function () {
         var selNode = $("#initCourse").parent("form").find("select");
         $.ajax({
             type: "POST",
-            url: "/findAllCourseDetail",
+            //返回当前未选的课程
+            url: "/findAllCourseDetailById",
+            data: "spId=" + spId,
             dataType: "json",
             success: function (res) {
                 $(selNode).find("option:not(:first)").remove();
@@ -130,6 +134,75 @@ $().ready(function () {
     $("#adCourBtn").click(function () {
         $("#adCourseform").submit();
         $("#myModal").modal("hide");
+    })
+
+    //添加学生成绩 输入框失去焦点
+    $("#sIdInput").blur(function () {
+        var val = $(this).val();
+        if (val == '') {
+            alert("请输入学号！");
+            $(this).parent().addClass("has-error");
+            $(this).next("span").prop("style", "").addClass("glyphicon-remove");
+        } else {
+            $.ajax({
+                type: "POST",
+                //1.查询当前学号是否正确，2.返回这个学生当前专业下有的课程
+                url: "/findStuAndCourseDetailById",
+                data: "sId=" + val,
+                dataType: "json",
+                success: function (res) {
+                    if (res['code'] == 100) {
+                        $("#sIdInput").parent().addClass("has-error");
+                        $("#sIdInput").next("span").prop("style", "").addClass("glyphicon-remove");
+                    } else {
+                        //如果当前返回的专业中没有课程，则
+                        if (res['lists'].length == 0) {
+                            alert("该学生专业下没有课程，请先录入课程！");
+                            $("#sIdInput").parent().addClass("has-error");
+                            $("#sIdInput").next("span").prop("style", "").addClass("glyphicon-remove");
+                        } else {
+                            //移除掉可能存在的Option
+                            $("#addScoreSel>option:not(:first)").remove();
+                            //遍历当前结果集
+                            $(res['lists']).each(function (i, o) {
+                                $("<option value='" + o.couId + "'>" + o.couName + "</option>").appendTo("#addScoreSel");
+                            });
+                            //将输入框的状态变成绿色
+                            $("#sIdInput").parent().addClass("has-success");
+                            $("#sIdInput").next("span").prop("style", "").addClass("glyphicon-ok");
+                        }
+                    }
+                }
+            })
+        }
+    });
+    //当输入框重新获取到焦点后，进行复原操作
+    $("#sIdInput").focus(function () {
+        $(this).parent().removeClass("has-success has-error");
+        $(this).next("span").prop("style", "display:block").removeClass("glyphicon-ok glyphicon-remove");
+    });
+    //添加学生提交添加表单
+    $("#addScoreSubBtn").click(function () {
+        var sid = $("#addScoreForm input[name='sId']").val();
+        var sYear = $("#addScoreForm input[name='sYear']").val();
+        var selVal = $("#addScoreForm select").val();
+        var grade = $("#addScoreForm input[name='grade']").val();
+        var b = $("#sIdInput").parent("div").hasClass("has-error");
+        if (sid == '' || sYear == '' || selVal == 'None' || grade == '' || b) {
+            alert("所有字段不能为空！");
+        } else {
+            $("#addScoreForm").submit();
+        }
+    })
+
+    //更新用户密码下的提示取消
+    $(".updateUserPage form div>input").focus(function () {
+        $(".updateUserPage form>span").css("display", "none");
+    })
+
+    //登录界面的消息提示取消
+    $(".login-component form>input").focus(function(){
+        $(".login-component form>span").css("display", "none");
     })
 
 });

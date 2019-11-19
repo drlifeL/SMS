@@ -2,6 +2,7 @@ package cn.dxxy.dao;
 
 import cn.dxxy.entity.Course;
 import cn.dxxy.entity.Score;
+import cn.dxxy.entity.Student;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,4 +26,8 @@ public interface ScoreDao {
     List<Map<String, String>> findScoreByClass(String sInfo);
 
     List<Map<String, String>> findScoreBySid(String sInfo);
+
+    Student findStuById(String sId);
+
+    List<Course> findCourseBySpId(String spId);
 }

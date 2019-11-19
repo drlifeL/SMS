@@ -19,12 +19,6 @@
         select college_num collegeNum,college_name collegeName  from college
     </select>
 
-    <!--    <resultMap id="detailClass" type="cn.dxxy.entity.Faculty" autoMapping="true">-->
-    <!--        <id column="c_id" property="cId"/>-->
-    <!--        <result column="c_name" property="cName"/>-->
-    <!--        <result column="c_departments" property="cDepartments"/>-->
-    <!--    </resultMap>-->
-
     <!-- 给定一个学院，查询该学院下的所有班级 -->
     <select id="getClassDetail" resultType="cn.dxxy.entity.StuClass">
         select c_id cId,c_name cName from stu_class where col_id =#{deptId}

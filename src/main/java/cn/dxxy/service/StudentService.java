@@ -38,7 +38,6 @@ public class StudentService {
     }
 
     /**
-     *
      * <p>
      * 注意：此处应该有事务功能
      *
@@ -69,6 +68,6 @@ public class StudentService {
 
     public void updateStu(Student student) {
         studentDao.updateStu(student);
-
     }
+
 }

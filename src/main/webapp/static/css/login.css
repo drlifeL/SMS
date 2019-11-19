@@ -1,0 +1,58 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.bg {
+    position: relative;
+    width: 100%;
+    min-height: 937px;
+    background: url("../img/bg.png");
+}
+
+.login-box {
+    position: relative;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.login-person {
+    background-image: url("../img/noTitle.png");
+    position: absolute;
+    top: 200px;
+    right: 1px;
+    width: 400px;
+    height: 420px;
+    padding: 50px 23px 23px 23px;
+}
+.login-component{
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+.login-component form>input{
+    display: block;
+    width: 90%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.login-component form>button{
+    width: 100%;
+    margin-top: 22px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    display: block;
+    background: #900000;
+    font-size: 18px;
+    border-radius: 5px;
+    color: #fff;
+}
