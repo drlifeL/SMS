@@ -6,6 +6,8 @@ import cn.dxxy.entity.Student;
 import cn.dxxy.service.StudentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import java.util.List;
 
 @Controller
 public class StudentController {
+
+    private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
 
     @Autowired
     StudentService studentService;
@@ -44,7 +48,7 @@ public class StudentController {
     @RequestMapping("/toAddStuPage")
     public String toAddStu(Model model) {
         List<College> colleges = studentService.findAllCollege();
-        System.out.println(colleges);
+        logger.debug(colleges.toString());
         model.addAttribute("colleges", colleges);
         return "student/addStudent";
     }

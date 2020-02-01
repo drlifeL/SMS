@@ -5,6 +5,8 @@ import cn.dxxy.entity.College;
 import cn.dxxy.entity.Course;
 import cn.dxxy.entity.StuClass;
 import cn.dxxy.utils.Util;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,12 @@ import java.util.List;
 
 @Service
 public class CollegeService {
+//    public static final Logger logger = LoggerFactory.getLogger(CollegeService.class);
+//
+//    public CollegeService() {
+//        logger.info("开始进行初始化！");
+//        logger.info(logger.getClass().getName());
+//    }
 
     @Autowired
     CollegeDao collegeDao;
@@ -57,7 +65,7 @@ public class CollegeService {
     }
 
     public void addCourseBySp(String cId, String couId) {
-        collegeDao.addCourseBySp(Util.getUUID(),cId,couId);
+        collegeDao.addCourseBySp(Util.getUUID(), cId, couId);
     }
 
     public List<Course> findAllCourseDetailById(String spId) {

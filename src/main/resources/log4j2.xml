@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout pattern=" [%d{ HH:mm:ss:SSS }] %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <!-- 使用多个logger 来过滤掉无用的信息  -->
+        <Logger name="org.apache.log4j.xml" level="info"/>
+        <logger name="org.mybatis" level="DEBUG"></logger>
+        <logger name="org.springframework" level="DEBUG"></logger>
+        <logger name="org.thymeleaf" level="INFO"></logger>
+        <Root level="debug">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+</Configuration>

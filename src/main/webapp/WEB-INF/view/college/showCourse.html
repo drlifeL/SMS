@@ -35,16 +35,12 @@
                         <tr>
                             <th>课程编号</th>
                             <th>课程名称</th>
-                            <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="course:${courses}">
                             <td>[[${course.couId}]]</td>
                             <td>[[${course.couName}]]</td>
-                            <td>
-                                <a class ="btn btn-primary">修改</a>
-                            </td>
                         </tr>
                         </tbody>
                     </table>

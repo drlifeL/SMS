@@ -135,11 +135,6 @@
       <artifactId>spring-expression</artifactId>
       <version>4.3.18.RELEASE</version>
     </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-jdk14</artifactId>
-      <version>1.7.25</version>
-    </dependency>
 
     <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
     <dependency>
@@ -149,13 +144,6 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- 使用hibernateValid  来进行基础的JSR303数据后端校验 -->
-    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-validator</artifactId>
-      <version>5.4.1.Final</version>
-    </dependency>
     <!-- 导入jackson 使得SpringMVC可以使用ResponseBody注解来直接返回JSON数据 -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -172,6 +160,26 @@
       <artifactId>jackson-annotations</artifactId>
       <version>2.9.10</version>
     </dependency>
+
+    <!--logger-->
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>2.12.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>2.12.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-jcl</artifactId>
+      <version>2.12.1</version>
+    </dependency>
+
+
+
   </dependencies>
 
   <build>
